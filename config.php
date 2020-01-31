@@ -1,3 +1,3 @@
 <?php
 
-define('DS', '\\');
+define('DS', '/');

@@ -1,7 +1,5 @@
 <?php
 
-use App\Core\Router2;
-use App\Core\Route;
 use App\Core\Router;
 
 require 'vendor/autoload.php';
@@ -10,12 +8,8 @@ require_once 'Autoload.php';
 Autoload::register();
 
 
+require 'config.php';
+require 'routes.php';
 
-//require 'App/Core/Router.php';
-//require 'App/Core/Route.php';
+Router::start($routes);
 
-require 'route.php';
-
-//Router::start();
-
-Router2::start($routes);
