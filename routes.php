@@ -1,16 +1,17 @@
 <?php
 
 $routes = [
+
+    '/PHP-Framework-project/' => [
+        'App\Controller\Home' => 'index',
+    ],
+
     '/PHP-Framework-project/contact' => [
-        'App\Controller\Contact' => 'index'
+        'App\Controller\Contact' => 'index',
     ],
 
-    '/PHP-Framework-project/customer' => [
-        'App\Controller\Customer' => 'index'
-    ],
-
-    '/PHP-Framework-project/seller' => [
-        'App\Controller\Seller' => 'index'
+    '/PHP-Framework-project/show-contact' => [
+        'App\Controller\Contact' => 'show'
     ],
 
 ];

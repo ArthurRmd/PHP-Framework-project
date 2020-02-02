@@ -28,7 +28,6 @@ class MonSuperRouter
         }
     }
 
-
     private static function addRoute($method, $url, $callback) :void
     {
         array_push(self::$routes, new Route($method, self::$defaultNamespace . $url, $callback));

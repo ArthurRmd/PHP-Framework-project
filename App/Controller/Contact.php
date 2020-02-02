@@ -13,13 +13,24 @@ class Contact extends ControllerAbstract
     {
 
         $this->setTitle('Le titre de ma page')
-            ->setCharset('utf-16')
-            ->addStyle('app.css');
+            ->setCharset('utf-8')
+            ->addStyle('app.css')
+            ->setMeta('author', 'Arthur')
+            ->setMeta('robots', 'follow')
+            ->render('contact');
+    }
 
-        $this->render('contact', [
-            'title' => 'titre',
-            'charset' => 'UTF-16'
-        ]);
+    public function show()
+    {
+        $this->setTitle(' show Contact ')
+            ->setCharset('utf-8')
+            ->addStyle('app.css')
+            ->setMeta('author', 'Arthur')
+            ->setMeta('robots', 'follow')
+            ->render('show-contact', [
+                'firstname' => $_POST['firstname'] ?? '',
+                'lastname'=> $_POST['lastname'] ?? '',
+            ]);
     }
 
 

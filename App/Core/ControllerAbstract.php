@@ -8,7 +8,21 @@ abstract class ControllerAbstract implements ControllerInterface
     private $title = null;
     private $charset = null;
     private $styles = array();
+    private $customElements = array();
 
+    public function __construct()
+    {
+        $this->customElements['name'] = array();
+    }
+
+    public function verifyMethod(String $method)
+    {
+        if(!$_SERVER['REQUEST_METHOD'] == $method)
+        {
+            die('erreur method');
+        }
+
+    }
 
     public function render(String $path, $content = null)
     {
@@ -48,7 +62,7 @@ abstract class ControllerAbstract implements ControllerInterface
 
     public function addStyle( String $path)
     {
-        array_push($this->styles, 'Assets'. DS . 'CSS'. DS . $path);
+        array_push($this->styles,  DS .'PHP-Framework-project'. DS .'Assets'. DS . 'CSS'. DS . $path);
         return $this;
     }
 
@@ -67,6 +81,34 @@ abstract class ControllerAbstract implements ControllerInterface
         require $link;
     }
 
+    public function __call($method, $arguments) {
+
+        switch ($method) {
+            case 'setMeta' :
+
+                array_push($this->customElements['name'], [
+                    'name' => $arguments[0],
+                    'content' => $arguments[1],
+                ]);
+
+                break;
+        }
+
+        return $this;
+    }
+
+    public function getMeta(): array
+    {
+        return $this->customElements['name'];
+    }
+
+    /**
+     * @return array
+     */
+    public function getCustomElements(): array
+    {
+        return $this->customElements;
+    }
 
 
 }
