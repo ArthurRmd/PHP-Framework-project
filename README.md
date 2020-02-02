@@ -48,7 +48,7 @@ $routes = [
 
 - methode `get` , `post` : 1er param le chemin, 2e param `controller@methode`
 
-#Controller
+# Controller
 - Les controllers sont dans le repertoire App/Controller
 - Il hérite de la classe abstraite ControllerAbstract
 
