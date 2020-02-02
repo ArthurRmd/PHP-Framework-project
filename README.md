@@ -1,5 +1,6 @@
 # PHP-Framework-project
-Projet : licence 3
+- Projet : licence 3
+- version PHP : 7.2.19
 
 #Installation 
 
