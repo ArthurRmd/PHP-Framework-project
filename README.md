@@ -2,13 +2,13 @@
 - Projet : licence 3
 - version PHP : 7.2.19
 
-#Installation 
+# Installation 
 
 - Faire un git clone du projet 
 - Changer la constante DS dans le fichier config.php ( si Linux ou Windows)
 - Aller sur votre http://localhost/PHP-Framework-project/
 
-#Routeur de base
+# Routeur de base
 
 - Les routes sont dans le fichier routes.php
 
@@ -27,7 +27,7 @@ $routes = [
 ?>
 ```
 
-#Mon super Router ( Bonus )
+# Mon super Router ( Bonus )
 
 - Les routes sont dans le fichier RouteDeMonSuperRouteur.php
 
@@ -52,10 +52,10 @@ $routes = [
 - Les controllers sont dans le repertoire App/Controller
 - Il hérite de la classe abstraite ControllerAbstract
 
-#Fichier ressource 
+# Fichier ressource 
 Les fichiers ressource sont dans le dossier /Assets (CSS, JS, Img)
 
-#Classe ControllerAbstract
+# Classe ControllerAbstract
 
 Tous les controllers héritent de classe abstraite `ControllerAbstract`
 
