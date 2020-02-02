@@ -11,6 +11,7 @@ class Home extends ControllerAbstract
     public function index()
     {
 
+        $this->verifyMethod('GET');
         $this->setTitle('Accueil')
             ->setCharset('utf-8')
             ->setMeta('author', 'Arthur')

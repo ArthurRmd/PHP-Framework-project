@@ -12,6 +12,7 @@ class Contact extends ControllerAbstract
     public function index()
     {
 
+        $this->verifyMethod('GET');
         $this->setTitle('Le titre de ma page')
             ->setCharset('utf-8')
             ->addStyle('app.css')
@@ -22,6 +23,8 @@ class Contact extends ControllerAbstract
 
     public function show()
     {
+        $this->verifyMethod('POST');
+
         $this->setTitle(' show Contact ')
             ->setCharset('utf-8')
             ->addStyle('app.css')

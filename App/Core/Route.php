@@ -35,9 +35,9 @@ class Route
             ($this->callBack)();
         } elseif (is_string($this->callBack)) {
             $response = $this->runController($this->callBack);
-            if (!$response) dump('don\'t foud');
+            //if (!$response) dump('don\'t foud');
         } else {
-            dump('aucun');
+            //dump('aucun');
         }
 
     }

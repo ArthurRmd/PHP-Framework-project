@@ -25,7 +25,7 @@ class Router
                 call_user_func(array(new $controller, $method));
             }
         } else {
-            (new Error())->showError(404);
+            (new Error())->showError(404, 'Sorry , page not found');
         }
 
 

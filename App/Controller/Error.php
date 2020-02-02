@@ -9,19 +9,17 @@ use App\Core\ControllerAbstract;
 class Error extends ControllerAbstract
 {
 
-    public function showError(int $httpCode)
+    public function showError(int $httpCode, String $message = '')
     {
 
-        switch ($httpCode) {
-            case 404:
-                $this->addStyle('error.css')
-                    ->render('error', [
-                        'error' => $httpCode,
-                        'message' => 'Sorry page notfound',
-                        'no-footer' => true,
-                    ]);
-                break;
-        }
+        $this->addStyle('error.css')
+            ->render('error', [
+                'error' => $httpCode,
+                'message' => $message,
+                'no-footer' => true,
+            ]);
+
+        http_response_code($httpCode);
     }
 
 }

@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\Controller\Error;
+
 abstract class ControllerAbstract implements ControllerInterface
 {
 
@@ -17,17 +19,19 @@ abstract class ControllerAbstract implements ControllerInterface
 
     public function verifyMethod(String $method)
     {
-        if(!$_SERVER['REQUEST_METHOD'] == $method)
+        if(!($_SERVER['REQUEST_METHOD'] == $method))
         {
-            die('erreur method');
+            (new Error())->showError(405, 'Method only POST' );
+            echo 'o';
+            exit();
         }
 
     }
 
     public function render(String $path, $content = null)
     {
-        $require =  'Template/' . $path . '.phtml' ;
-        include 'Template/layout/layout.phtml' ;
+        $require =  'Template'. DS . $path . '.phtml' ;
+        include 'Template'. DS .'layout'. DS .'layout.phtml' ;
 
     }
 
@@ -36,7 +40,6 @@ abstract class ControllerAbstract implements ControllerInterface
         $this->title = $title;
         return $this;
     }
-
 
     public function setCharset($charset)
     {
@@ -74,7 +77,6 @@ abstract class ControllerAbstract implements ControllerInterface
         return $this->styles;
     }
 
-
     public function getJs($path)
     {
         $link = 'Assets' . DS . 'JS' . DS . $path . '.js';
@@ -108,6 +110,11 @@ abstract class ControllerAbstract implements ControllerInterface
     public function getCustomElements(): array
     {
         return $this->customElements;
+    }
+
+    protected function getInstance()
+    {
+        return $this;
     }
 
 
