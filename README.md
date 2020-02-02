@@ -65,10 +65,11 @@ Configuration du rendu de la view :
 - `addStyle` permet d'ajouter une ou plusieurs feuilles de style a notre template
 - `setMeta` permet d'ajouter une ou meta a notre page 
 (elle utilise la méthode magique `__call`)
-- `render` permet d'afficher la view
 - `verifyMethod` permet de vérifier si la page demandée est appelée avec la bonne méthode http
 ( prend en paramettre la méthode demandée)
-
+- `render` permet d'afficher la view : 
+1er param le nom du fichier, 2e param un tableau de variable qui pourront etre récupéré dans la vu 
+( option 2e param 'no-footer' => true pour ne pas avoir de footer ) 
 # Gestion des erreurs
 
 Controller : `Error`
