@@ -1,0 +1,9 @@
+
+<h1 style="margin-bottom: 30px"> Voici la liste </h1>
+
+<?php
+
+foreach ($content['contacts'] as $contact)
+    echo "<h4>". $contact->getFirstname() . " " .$contact->getName() . "</h4>"
+
+?>
