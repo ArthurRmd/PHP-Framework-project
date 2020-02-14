@@ -19,8 +19,16 @@ $routes = [
     ],
 
     '/PHP-Framework-project/contact/{id}' => [
-        'App\Controller\Contact' => 'getById'
+        'App\Controller\Contact' => 'getById',
+        'option' => [
+            'id'=> 'number'
+        ]
     ],
+
+    '/PHP-Framework-project/contact_1/{id}/contact_2/{id_2}' => [
+        'App\Controller\Contact' => 'getByTwoId'
+    ],
+
 
 ];
 

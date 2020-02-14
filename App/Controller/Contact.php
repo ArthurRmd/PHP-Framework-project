@@ -60,11 +60,10 @@ class Contact extends ControllerAbstract
             ->render('show-all-contact', compact('contacts'));
     }
 
-    public function getById()
+    public function getById($resquest)
     {
         $this->verifyMethod('GET');
-
-        $contact = (new ContactFormRepository())->get($_SESSION['param']);
+        $contact = (new ContactFormRepository())->get($resquest['id']);
 
         if (!$contact) {
             (new Error())->showError(404, "L'utilisateur n'est pas trouvé");
@@ -79,5 +78,25 @@ class Contact extends ControllerAbstract
             ->render('contactId', compact('contact'));
     }
 
+    public function getByTwoId ($resquest) {
+        $this->verifyMethod('GET');
+
+        $contacts = array();
+
+        array_push($contacts, (new ContactFormRepository())->get($resquest['id']));
+        array_push($contacts, (new ContactFormRepository())->get($resquest['id_2']));
+
+        if (!$contacts) {
+            (new Error())->showError(404, "L'utilisateur n'est pas trouvé");
+            exit();
+        }
+
+        $this->setTitle(' show Contact ')
+            ->setCharset('utf-8')
+            ->addStyle('app.css')
+            ->setMeta('author', 'Arthur')
+            ->setMeta('robots', 'follow')
+            ->render('show-two-contact', compact('contacts'));
+    }
 
 }
