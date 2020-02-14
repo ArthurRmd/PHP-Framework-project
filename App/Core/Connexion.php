@@ -10,11 +10,11 @@ class Connexion extends Singleton
     private $pdo = null;
 
     private $config = [
-        'sgbd' => 'mysql',
-        'serveur' => 'localhost',
-        'login' => 'root',
-        'pass' => 'root',
-        'base' => 'licence3'
+        'sgbd' => SGBD,
+        'serveur' => SERVEUR,
+        'login' =>  LOGIN,
+        'pass' =>  PASS,
+        'base' => BASE,
     ];
 
     protected function __construct()

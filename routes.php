@@ -18,10 +18,6 @@ $routes = [
         'App\Controller\Contact' => 'showAll'
     ],
 
-    '/PHP-Framework-project/cont/{id}' => [
-        'App\Controller\Contact' => 'showAll'
-    ],
-
     '/PHP-Framework-project/contact/{id}' => [
         'App\Controller\Contact' => 'getById'
     ],
