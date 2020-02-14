@@ -67,8 +67,16 @@ class Router
                             }
 
                         } else {
+
                             $paramsName = substr($route, 1, -1);
-                            $request[$paramsName] = $urlRoute[$key];
+
+                            if (self::verifParam([$paramsName => $urlRoute[$key]], $routeRouter['option'])) {
+
+                                $request[$paramsName] = $urlRoute[$key];
+
+                            } else {
+                                $launchRoute = false;
+                            }
                         }
                     }
 
@@ -93,6 +101,32 @@ class Router
         if ($find == false) {
             (new Error())->showError(404, 'Sorry , page not found');
         }
+    }
+
+
+    public static function verifParam($params, $option): bool
+    {
+
+        $response = true;
+
+        foreach ($params as $key => $param) {
+
+            switch ($option[$key]) {
+
+                case 'number' :
+                     if (!is_numeric($param))
+                         $response = false;
+                    break;
+
+                case 'string' :
+                    if (!is_string($param))
+                        $response = false;
+                    break;
+
+            }
+
+        }
+        return $response;
     }
 
 
