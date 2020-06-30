@@ -14,5 +14,25 @@ $routes = [
         'App\Controller\Contact' => 'show'
     ],
 
+    '/PHP-Framework-project/show-all-contact' => [
+        'App\Controller\Contact' => 'showAll'
+    ],
+
+    '/PHP-Framework-project/contact/{id}' => [
+        'App\Controller\Contact' => 'getById',
+        'option' => [
+            'id'=> 'number'
+        ]
+    ],
+
+    '/PHP-Framework-project/contact_1/{id}/contact_2/{id_2}' => [
+        'App\Controller\Contact' => 'getByTwoId',
+        'option' => [
+            'id'=> 'number',
+            'id_2' => 'number'
+        ]
+    ],
+
+
 ];
 

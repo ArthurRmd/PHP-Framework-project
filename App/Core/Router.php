@@ -24,11 +24,110 @@ class Router
             if (method_exists($controller, $method)) {
                 call_user_func(array(new $controller, $method));
             }
+
         } else {
-            (new Error())->showError(404, 'Sorry , page not found');
+
+            self::customRoute($routes);
+
         }
 
-
     }
+
+
+    private static function customRoute($routes)
+    {
+        //Tableau route actuel
+        $urlRoute = explode('/', self::$config['REQUEST_URI']);
+        unset($urlRoute[0]);
+        $find = false;
+
+        // Boucle sur toutes les routes
+        foreach ($routes as $key => $routeRouter) {
+
+            if (strpos($key, '{') && strpos($key, '}')) {
+
+                //Detecte si il a un paramètre dynamique
+                $launchRoute = true;
+
+                $actualRoute = explode('/', $key);
+                unset($actualRoute[0]);
+                $params = array();
+
+
+                if (count($actualRoute) == count($urlRoute)) {
+                    foreach ($actualRoute as $key => $route) {
+
+                        $firstCarac = substr($route, 0, 1);
+                        $lastCarac = substr($route, -1);
+
+                        if ($firstCarac != '{' && $lastCarac != '}') {
+
+                            if ($route != $urlRoute[$key]) {
+                                $launchRoute = false;
+                            }
+
+                        } else {
+
+                            $paramsName = substr($route, 1, -1);
+
+                            if (self::verifParam([$paramsName => $urlRoute[$key]], $routeRouter['option'])) {
+
+                                $request[$paramsName] = $urlRoute[$key];
+
+                            } else {
+                                $launchRoute = false;
+                            }
+                        }
+                    }
+
+                    // Si la route correspond
+
+                    if ($launchRoute) {
+                        $controller = array_keys($routeRouter)[0];
+                        $method = $routeRouter[$controller];
+
+                        if (method_exists($controller, $method)) {
+                            $find = true;
+                            (new $controller)->$method($request);
+                        }
+                        break;
+                    }
+                }
+
+
+            }
+        }
+
+        if ($find == false) {
+            (new Error())->showError(404, 'Sorry , page not found');
+        }
+    }
+
+
+    public static function verifParam($params, $option): bool
+    {
+
+        $response = true;
+
+        foreach ($params as $key => $param) {
+
+            switch ($option[$key]) {
+
+                case 'number' :
+                     if (!is_numeric($param))
+                         $response = false;
+                    break;
+
+                case 'string' :
+                    if (!is_string($param))
+                        $response = false;
+                    break;
+
+            }
+
+        }
+        return $response;
+    }
+
 
 }

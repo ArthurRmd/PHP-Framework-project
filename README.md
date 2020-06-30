@@ -79,3 +79,70 @@ La methode `showError(int $httpCode, String $message = '')` permet d'afficher un
 cas d'erreur.
 
 Elle est utilisé lorsque une route n'est pas trouvé ou que la méthode http n'est pas bonne, elle appelle la view Error.phtml
+
+
+# TP2
+
+Route Dynamique : 
+
+```php
+$routes = [
+
+    '/PHP-Framework-project/contact/{id}' => [
+        'App\Controller\Contact' => 'getById',
+        'option' => [
+            'id'=> 'number'
+        ]
+    ],
+
+    '/PHP-Framework-project/contact_1/{id}/contact_2/{id_2}' => [
+        'App\Controller\Contact' => 'getByTwoId',
+        'option' => [
+            'id'=> 'number',
+            'id_2' => 'number'
+        ]
+    ],
+
+];
+```
+
+Dans le controller : exemple
+
+```php
+    public function getById($resquest)
+    {
+        $this->verifyMethod('GET');
+        $contact = (new ContactFormRepository())->get($resquest['id']);
+
+
+        $this->setTitle(' show Contact ')
+            ->render('contactId', compact('contact'));
+    }
+```
+On a un tableau clef / valeur
+
+exemple pour la route : 
+```'/PHP-Framework-project/contact_1/{id}/contact_2/{id_2}'```
+```'/PHP-Framework-project/contact_1/5/contact_2/6'```
+
+On a un tableau 
+
+```php
+$request = [
+    'id' => 5,
+    'id_2' => 6
+]
+```
+
+Vérification des paramètres
+
+```php
+        ...
+        'option' => [
+            'id'=> 'number', // ou string
+            'id_2' => 'number' // ou string
+        ]
+
+```
+- number : verifie si integer
+- string : verifie si string
